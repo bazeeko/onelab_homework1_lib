@@ -43,3 +43,22 @@ func TestRootsOfQuadraticEquation(t *testing.T) {
 		}
 	}
 }
+
+func TestCreateUUID(t *testing.T) {
+	testCases := []struct {
+		input        int
+		outputLength int
+		err          error
+	}{
+		{5, 5, nil},
+		{10, 10, nil},
+		{20, 20, nil},
+	}
+
+	for _, tc := range testCases {
+		uuid, _ := CreateUUID(tc.input)
+		if len(uuid) != tc.outputLength {
+			t.Errorf("length of CreateUUID(%d) => got %d, want %d", tc.input, len(uuid), tc.outputLength)
+		}
+	}
+}

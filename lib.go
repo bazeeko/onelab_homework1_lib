@@ -4,6 +4,8 @@ import (
 	"errors"
 	"fmt"
 	"math"
+
+	"github.com/aidarkhanov/nanoid/v2"
 )
 
 var ErrNegativeDiscriminant = errors.New("the quadratic equation has no real roots")
@@ -37,4 +39,12 @@ func RootsOfQuadraticEquation(a, b, c float64) (x1 float64, x2 float64, err erro
 	default:
 		return x1, x2, fmt.Errorf("RootsOfQuadraticEquation: %w", ErrNegativeDiscriminant)
 	}
+}
+
+func CreateUUID(length int) (uuid string, err error) {
+	uuid, err = nanoid.GenerateString(nanoid.DefaultAlphabet, length)
+	if err != nil {
+		return uuid, fmt.Errorf("CreateUUID: %w", err)
+	}
+	return
 }
